@@ -1,0 +1,24 @@
+﻿IBattleshipOpponent is the interface your algorithm must implement to play the battleship game.
+
+* Properties Name and Version must return your algorithm name and version, that will be printed in the console when your algorithm will play.
+
+* NewMatch() is called one time before the beginning of the 1000 games played against one opponent. MatchOver() is called after the 1000th game, the last game.
+  Those 2 methods are there for statistical logging purpose during the development of the algorithm. They must be empty, or do nothing, during the real competition.
+
+* NewGame() method is called before every game start, for any of the 1000 games. Note that the same instance of your class that implement IBattleshipOpponent  is 
+  used to run all the 1000 games. This enable you to collect statistical information about your opponent. You can put your game initialization code in this method.
+* GameWon() or GameLost() method is called after every game finish based on the game result.   
+
+
+Attack methods
+* GetShot() method is called every time is your turn to shot to opponent ships, must return the coordinates of your shot. It implement your attack strategy.
+* ShotMiss() or ShotHit() or ShotHitAndSink() is called after GetShot() to communicate the result of your shot.
+
+
+Defence methods
+* PlaceShips() is called at every time a new game start. You must place all your ships in the grid. It implement your defence strategy.
+  This method can be called multiple times, until all the ships are not placed outside the grid and are not overlapping.
+  Time spent to call this method multiple times is subtracted from the overall time available for one game (4 seconds).
+
+* OpponentShot() is called every time the opponent shot to your ships and tell you the coordinates of your opponent shot.
+

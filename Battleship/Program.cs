@@ -45,7 +45,7 @@ namespace Battleship
 			{
 				Console.WriteLine("{0} {1}:\t{2}", key.Name, key.Version, scores[key]);
 			}
-
+			Console.WriteLine("Press any key to quit.");
 			Console.ReadKey(true);
 		}
 	}
