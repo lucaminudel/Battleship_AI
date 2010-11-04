@@ -1,0 +1,55 @@
+﻿
+  Support for running opponents out-of-process
+===========================================================
+An opponent can be implemented as a console application which
+communicates through a linebased text protocol utilizing stdio.
+
+Initialization:
+  IN : get-name
+  OUT: <opponent name>
+       Query for the name of the opponent. Shown in game and
+	   logs.
+  
+  IN : get-version
+  OUT: <major>.<minor>.<build>.<revision>
+       Query for the version of the opponent. Shown in game and
+	   logs. Each part must be between 0 and 65535.
+
+Start of game:
+  IN : new-game
+       Executed before each game.
+
+  IN : place-ship <size>
+  OUT: <x> <y> <horizontal|vertical>
+       Query for placement of a ship of given size. x & y must
+	   be between 0 and 9, with (0,0) as the topmost left corner.
+	   The extent of a ship is to right or down respectively.
+
+Gameplay:
+  IN : get-shot
+  OUT: <x> <y>
+       Query for a shot. x & y must be between 0 and 9, with
+	   (0,0) as the topmost left corner.
+
+  IN : shot-hit
+       Status report of last hot, when hitting an enemy ship.
+
+  IN : shot-miss
+       Status report of last hot, when not hitting anything.
+
+  IN : shot-hit-and-sink <size> <x> <y> <horizontal|vertical>
+       Status report of last hot, when hitting and sinking an
+	   opponent ship.
+
+  IN : opponent-shot <x> <y>
+       Status report when the opponent shoots at you.
+
+End of game:
+  IN : game-won
+       Executed after winning a game.
+
+  IN : game-lost
+       Executed after losing a game.
+
+  IN : match-over
+       Executed when all games are over, and it's time to quit.

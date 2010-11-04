@@ -61,7 +61,10 @@
   <ItemGroup>
     <Compile Include="BattleshipCompetition.cs" />
     <Compile Include="IBattleshipOpponent.cs" />
+    <Compile Include="IHaveStandardIO.cs" />
     <Compile Include="OpponentLoader.cs" />
+    <Compile Include="OutOfProcessOpponent.cs" />
+    <Compile Include="ProcessWrapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ship.cs" />
@@ -70,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IBattleshipOpponent implementation instructions.txt" />
+    <Content Include="OutOfProcessOpponent.readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
