@@ -33,17 +33,28 @@ namespace Battleship
 				opponents[0],
 				opponents[1],
 				new TimeSpan(0, 0, 4),  // Time per game
-				501,                    // Wins per match
+				5, //501,                    // Wins per match
 				true,                   // Play out?
 				new Size(10, 10),       // Board Size
 				2, 3, 3, 4, 5           // Ship Sizes
 			);
 
+			Console.WriteLine("Battleship AI");
+			Console.WriteLine("{0} v{1} vs. {2} v{3}", 
+				opponents[0].Name, opponents[0].Version,
+				opponents[1].Name, opponents[1].Version
+			);
+
 			var scores = bc.RunCompetition();
+
+			var lengthOfLongestName = scores.Keys
+				.Select(k => string.Format("{0} v{1}", k.Name, k.Version))
+				.Max(n => n.Length);
+			var scoreFormat = string.Format("{{0,-{0}}}: {{1}}", lengthOfLongestName);
 
 			foreach (var key in scores.Keys.OrderByDescending(k => scores[k]))
 			{
-				Console.WriteLine("{0} {1}:\t{2}", key.Name, key.Version, scores[key]);
+				Console.WriteLine(scoreFormat, string.Format("{0} v{1}", key.Name, key.Version), scores[key]);
 			}
 			Console.WriteLine("Press any key to quit.");
 			Console.ReadKey(true);
