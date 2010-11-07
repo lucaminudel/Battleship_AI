@@ -7,18 +7,23 @@ let (|Grep|_|) expr input =
   else
     None
 
-let seed = new Random()
+let seed = new System.Random()
 let rnd() = seed.Next(9)
 let rndOrientation() = if rnd() % 2 = 0 then "horizontal" else "vertical"
+let mutable possibleShots = [] 
 
 while true do
   let input = Console.ReadLine()
   match input with
   | "get-name" -> Console.WriteLine("RandomF#")
   | "get-version" -> Console.WriteLine("0.1")
-  | "new-game" -> ()
+  | "new-game" ->
+    possibleShots <- [for y = 0 to 9 do for x = 0 to 9 do yield (x,y)] |> List.sortWith (fun a b -> rnd() % 2)
   | Grep(@"place-ship (\d)") res -> Console.WriteLine("{0} {1} {2}", rnd(), rnd(), rndOrientation())
-  | "get-shot" -> Console.WriteLine("{0} {1}", rnd(), rnd())
+  | "get-shot" ->
+    let shot = possibleShots.Head
+    possibleShots <- possibleShots.Tail
+    Console.WriteLine("{0} {1}", fst shot, snd shot)
   | "shot-hit" -> ()
   | Grep(@"shot-hit-and-sunk (\d) (\d) (\d) (\w)") res -> ()
   | "shot-miss" -> ()
