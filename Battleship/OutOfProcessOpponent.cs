@@ -58,7 +58,7 @@
 
 		public void ShotMiss(Point shot)
 		{
-			io.WriteLine("shot-hit-miss");
+			io.WriteLine("shot-miss");
 		}
 
 		public void OpponentShot(Point shot)
