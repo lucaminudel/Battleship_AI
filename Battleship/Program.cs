@@ -33,7 +33,7 @@ namespace Battleship
 				opponents[0],
 				opponents[1],
 				new TimeSpan(0, 0, 4),  // Time per game
-				5, //501,                    // Wins per match
+				501,                    // Wins per match
 				true,                   // Play out?
 				new Size(10, 10),       // Board Size
 				2, 3, 3, 4, 5           // Ship Sizes
