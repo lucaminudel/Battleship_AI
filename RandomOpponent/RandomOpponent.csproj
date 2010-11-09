@@ -46,6 +46,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Protocol.fsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Random.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

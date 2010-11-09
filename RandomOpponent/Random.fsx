@@ -1,11 +1,6 @@
-﻿open System
-
-let (|Grep|_|) expr input =
-  let r = System.Text.RegularExpressions.Regex.Match(input, expr)
-  if r.Success then
-    Some([for g in r.Groups -> g.Value].Tail)
-  else
-    None
+﻿#load "Protocol.fsx"
+open System
+open Protocol
 
 let seed = new System.Random()
 let rnd() = seed.Next(9)
@@ -15,20 +10,20 @@ let mutable possibleShots = []
 while true do
   let input = Console.ReadLine()
   match input with
-  | "get-name" -> Console.WriteLine("RandomF#")
-  | "get-version" -> Console.WriteLine("0.1")
-  | "new-game" ->
+  | GetName -> Console.WriteLine("RandomF#")
+  | GetVersion -> Console.WriteLine("0.1")
+  | NewGame ->
     possibleShots <- [for y = 0 to 9 do for x = 0 to 9 do yield (x,y)] |> List.sortWith (fun a b -> rnd() % 2)
-  | Grep(@"place-ship (\d)") res -> Console.WriteLine("{0} {1} {2}", rnd(), rnd(), rndOrientation())
-  | "get-shot" ->
+  | PlaceShip(size) -> Console.WriteLine("{0} {1} {2}", rnd(), rnd(), rndOrientation())
+  | GetShot ->
     let shot = possibleShots.Head
     possibleShots <- possibleShots.Tail
     Console.WriteLine("{0} {1}", fst shot, snd shot)
-  | "shot-hit" -> ()
-  | Grep(@"shot-hit-and-sunk (\d) (\d) (\d) (\w)") res -> ()
-  | "shot-miss" -> ()
-  | Grep(@"opponent-shot (\d) (\d)") res -> ()
-  | "game-won" -> ()
-  | "game-lost" -> ()
-  | "match-over" -> exit 0
-  | _ -> Console.Error.WriteLine("unexpected input: " + input)
+  | ShotHit -> ()
+  | ShotHitAndSunk(ship) -> ()
+  | ShotMiss -> ()
+  | OpponentShot(location) -> ()
+  | GameWon -> ()
+  | GameLost -> ()
+  | MatchOver -> exit 0
+  | Unknown(input) -> Console.Error.WriteLine("unexpected input: " + input)
