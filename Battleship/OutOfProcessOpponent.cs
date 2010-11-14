@@ -9,11 +9,14 @@
 		public OutOfProcessOpponent(IHaveStandardIO io)
 		{
 			this.io = io;
+			io.WriteLine("get-name");
+			Name = io.ReadLine();
+			io.WriteLine("get-version");
+			Version = new Version(io.ReadLine());
 		}
 
-		public string Name { get { io.WriteLine("get-name"); return io.ReadLine(); } }
-
-		public Version Version { get { io.WriteLine("get-version"); return new Version(io.ReadLine()); } }
+		public string Name { get; private set; }
+		public Version Version { get; private set; }
 
 		public void NewGame(Size size, TimeSpan timeSpan)
 		{
@@ -55,7 +58,7 @@
 
 		public void ShotMiss(Point shot)
 		{
-			io.WriteLine("shot-hit-miss");
+			io.WriteLine("shot-miss");
 		}
 
 		public void OpponentShot(Point shot)
