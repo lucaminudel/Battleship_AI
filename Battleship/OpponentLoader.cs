@@ -11,15 +11,22 @@
 			if (args.Length != 2)
 				throw new ArgumentException("Must supply two opponents");
 
-			return args.Select(fileName =>{
-				if (fileName.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase))
+			return args.Select(argument => {
+			    var isAnAssembly = argument.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase);
+			    if (isAnAssembly)
 					return Activator.CreateInstance(
-						Assembly.LoadFrom(fileName)
+						Assembly.LoadFrom(argument)
 						.GetExportedTypes()
 						.First(t => t.Implements<IBattleshipOpponent>())
 					);
-				else
-					return new OutOfProcessOpponent(new ProcessWrapper(fileName));
+
+			    var isAnExecutable = argument.EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase);
+			    var isACommand = argument.EndsWith(".bat", StringComparison.InvariantCultureIgnoreCase);
+				if (isAnExecutable || isACommand)
+					return new OutOfProcessOpponent(new ProcessWrapper(argument));
+
+			    return Assembly.GetAssembly(typeof (OpponentLoader)).CreateInstance(argument);
+
 			})
 			.Cast<IBattleshipOpponent>()
 			.ToArray();

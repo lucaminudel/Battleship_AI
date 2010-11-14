@@ -63,6 +63,8 @@
     <Compile Include="IBattleshipOpponent.cs" />
     <Compile Include="IHaveStandardIO.cs" />
     <Compile Include="OpponentLoader.cs" />
+    <Compile Include="Opponents\AgentSmith.cs" />
+    <Compile Include="Opponents\RandomOpponent.cs" />
     <Compile Include="OutOfProcessOpponent.cs" />
     <Compile Include="ProcessWrapper.cs" />
     <Compile Include="Program.cs" />
