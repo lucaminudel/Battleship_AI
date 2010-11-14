@@ -12,7 +12,10 @@ namespace Battleship
 			Console.WriteLine();
 			Console.WriteLine("Usage:");
 			Console.WriteLine("{0} OPPONENT OPPONENT", Environment.GetCommandLineArgs()[0]);
-			Console.WriteLine("Where OPPONENT is an assembly containing an opponent implementation.");
+			Console.WriteLine("Where OPPONENT can be:");
+			Console.WriteLine("- an assembly containing an opponent implementation, i.e. RandomOpponent.dll");
+			Console.WriteLine("- an executable with an out of process implementation, i.e. Random.bat");
+			Console.WriteLine("- the full name of the type of a an available opponent, i.e. Battleship.Opponents.AgentSmith");
 		}
 
 		static void Main(string[] args)
