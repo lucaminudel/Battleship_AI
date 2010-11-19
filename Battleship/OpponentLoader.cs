@@ -25,7 +25,7 @@
 				if (isAnExecutable || isACommand)
 					return new OutOfProcessOpponent(new ProcessWrapper(argument));
 
-			    return Assembly.GetAssembly(typeof (OpponentLoader)).CreateInstance(argument);
+			    return Assembly.LoadFrom("Battleship.Opponents.dll").CreateInstance(argument);
 
 			})
 			.Cast<IBattleshipOpponent>()
