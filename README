@@ -1,0 +1,23 @@
+Rules of the game:
+
+1. The game is be played on a 10x10 grid.
+2. Each competitor will place each of 5 ships (of lengths 2, 3, 3, 4, 5) on their grid.
+3. No ships may overlap, but they may be adjacent.
+4. The competitors then take turns firing single shots at their opponent.
+5. The opponent will notify the competitor if the shot sinks, hits, or misses.
+6. Game play ends when all of the ships of any one player are sunk.
+7. Match ends when one of the opponents reach 501 victories.
+
+
+Rules of the competition:
+
+1. The spirit of the competition is to find the best Battleship algorithm.
+2. Anything that is deemed against the spirit of the competition will be grounds for disqualification.
+3. Interfering with an opponent (i.e. via reflection) is against the spirit of the competition.
+5. A limit of 4 second of CPU time per game is allotted to each competitor on the primary thread.
+6. Running out of time results in losing the current game.
+7. Any unhandled exception will result in losing the current game.
+8. Code should be posted on stack overflow as an answer, or, if too large, linked.
+9. Max total size (un-compressed) of an entry is 1 MB.
+A. Your entry must implement the IBattleshipOpponent interface or must impement the protocol
+   defined by the OutOfProcessOpponent and communicate via the standard input and output
